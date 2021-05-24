@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title>sign up</title>
+<div th:replace="fragments/header :: header-links" />
+</head>
+
+<body>
+<div th:replace="fragments/header :: nav"></div>
+	<div class="container mt-5">
+		<div class="card bg-light">
+			<article class="card-body mx-auto" style="max-width: 400px;">
+				<h4 class="card-title mt-3 text-center">Create Account</h4>
+				<div th:if="${errors != null && errors.size() > 0}" class="alert alert-danger" role="alert">
+					<p th:each="err : ${errors}" th:text="${err}"></p>
+				</div>
+				<form action="#" th:action="@{/registration}" method="post">
+					<div class="form-group input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"> <i class="fa fa-user"></i></span>
+						</div>
+						<input name="firstName"
+							class="form-control" placeholder="First name" type="text"autofocus="autofocus"required="required">
+					</div>
+					<div class="form-group input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"> <i class="fa fa-user"></i></span>
+						</div>
+						<input name="lastName" class="form-control" placeholder="Last name" type="text"required="required">
+					</div>
+					<div class="form-group input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"> <i
+								class="fa fa-birthday-cake"></i></span>
+						</div>
+						<input name="birthday" class="form-control" type="date" value="1990-01-01"required="required">
+					</div>
+					<div class="form-group input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"> <i class="fa fa-envelope"></i></span>
+						</div>
+						<input name="email" class="form-control"placeholder="Email address" type="email"required="required">
+					</div>
+					<div class="form-group input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"> <i class="fa fa-lock"></i></span>
+						</div>
+						<input id="password" name="password" class="form-control" placeholder="Create password" type="password"required="required">
+					</div>
+					<div class="form-group input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"> <i class="fa fa-lock"></i></span>
+						</div>
+						<input id="confirm_password" name="repeatPassword" class="form-control" placeholder="Repeat password"type="password"required="required">
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary btn-block">Create Account</button>
+					</div>
+					<p class="text-center"> Have an account? <a href="/">Log In</a>
+					</p>
+				</form>
+			</article>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var password = document.getElementById("password")
+		var confirm_password = document.getElementById("confirm_password");
+
+		function validatePassword() {
+			if (password.value != confirm_password.value) {
+				confirm_password.setCustomValidity("Passwords Don't Match");
+			} else {
+				confirm_password.setCustomValidity('');
+			}
+		}
+		password.onchange = validatePassword;
+		confirm_password.onkeyup = validatePassword;
+	</script>
+</body>
+</html>

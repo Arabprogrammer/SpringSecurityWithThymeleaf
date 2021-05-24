@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title>Application</title>
+<div th:replace="fragments/header :: header-links"/>
+</head>
+<body>
+
+	<div th:replace="fragments/header :: nav"></div>
+
+	<div class="container mt-5">
+		<div class="card bg-light">
+			<article class="card-body mx-auto" style="max-width: 400px;">
+				<h4 class="card-title mt-3 text-center">Sign In</h4>
+						<div th:if="${param.error}">
+							<div class="alert alert-danger">Invalid username or password.</div>
+						</div>
+						<div th:if="${param.logout}">
+							<div class="alert alert-info">You have been logged out.</div>
+						</div>
+				<form th:action="@{/login}" method="post">
+					<div class="form-group input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"> <i class="fa fa-envelope"></i></span>
+						</div>
+						<input class="form-control" id="email" name="email"  placeholder="Email" type="email" required="required" autofocus="autofocus" >
+					</div>
+					<div class="form-group input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"> <i class="fa fa-lock"></i></span>
+						</div>
+						<input name="password" id="password" class="form-control" placeholder="password" type="password" required="required">
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary btn-block">Log In</button>
+					</div>
+					<p class="text-center">Don't have an account!  <a href="/signUp">Create Account </a></p>
+				</form>
+			</article>
+		</div>
+	</div>
+	
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

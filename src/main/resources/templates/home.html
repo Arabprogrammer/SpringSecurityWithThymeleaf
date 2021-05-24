@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" 
+  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+  <div th:replace="fragments/header :: header-links"/>
+<head>
+<meta charset="ISO-8859-1">
+<title>Application</title>
+</head>
+<body>
+<div th:replace="fragments/header :: nav"></div>
+<div class="container-fluid">
+ 	<div sec:authorize="isAuthenticated()">
+    	 Authenticated as <b><span sec:authentication="name "></span></b><br>
+     	 Roles: <span sec:authentication="principal.authorities"></span>
+	</div>
+</div>
+</body>
+</html>
