@@ -7,57 +7,60 @@
 </head>
 
 <body>
-<div th:replace="fragments/header :: nav"></div>
+	<div th:replace="fragments/header :: nav"></div>
 	<div class="container mt-5">
 		<div class="card bg-light">
-			<article class="card-body mx-auto" style="max-width: 400px;">
+			<article class="card-body mx-auto">
 				<h4 class="card-title mt-3 text-center">Create Account</h4>
-				<div th:if="${errors != null && errors.size() > 0}" class="alert alert-danger" role="alert">
+				<div th:if="${errors != null && errors.size() > 0}"class="alert alert-danger" role="alert">
 					<p th:each="err : ${errors}" th:text="${err}"></p>
 				</div>
-				<form action="#" th:action="@{/registration}" method="post">
+				<div th:if="${#fields.hasErrors('${user.*}')}" class="alert alert-danger" role="alert">
+					<p th:each="err : ${#fields.errors('user.*')}" th:text="${err}"></p>
+				</div>
+				
+				<form action="#" th:action="@{/registration}" th:object="${user}" method="post">
 					<div class="form-group input-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"> <i class="fa fa-user"></i></span>
 						</div>
-						<input name="firstName"
-							class="form-control" placeholder="First name" type="text"autofocus="autofocus"required="required">
+						<input th:field="*{firstName}" class="form-control"placeholder="First name" type="text" autofocus="autofocus" >
 					</div>
 					<div class="form-group input-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"> <i class="fa fa-user"></i></span>
 						</div>
-						<input name="lastName" class="form-control" placeholder="Last name" type="text"required="required">
+						<input th:field="*{lastName}" class="form-control"placeholder="Last name" type="text" >
 					</div>
 					<div class="form-group input-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"> <i
 								class="fa fa-birthday-cake"></i></span>
 						</div>
-						<input name="birthday" class="form-control" type="date" value="1990-01-01"required="required">
+						<input th:field="*{birthday}" name="birthday" class="form-control"type="date" >
 					</div>
 					<div class="form-group input-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"> <i class="fa fa-envelope"></i></span>
 						</div>
-						<input name="email" class="form-control"placeholder="Email address" type="email"required="required">
+						<input th:field="*{email}" name="email" class="form-control"placeholder="Email address" type="email" >
 					</div>
 					<div class="form-group input-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"> <i class="fa fa-lock"></i></span>
 						</div>
-						<input id="password" name="password" class="form-control" placeholder="Create password" type="password"required="required">
+						<input th:field="*{password}" id="password" name="password"class="form-control" placeholder="Create password"type="password"  >
 					</div>
 					<div class="form-group input-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"> <i class="fa fa-lock"></i></span>
 						</div>
-						<input id="confirm_password" name="repeatPassword" class="form-control" placeholder="Repeat password"type="password"required="required">
+						<input th:field="*{confirmPassword}" id="confirm_password"name="repeatPassword" class="form-control"placeholder="Confirm Password" type="password">
 					</div>
 					<div class="form-group">
 						<button type="submit" class="btn btn-primary btn-block">Create Account</button>
 					</div>
-					<p class="text-center"> Have an account? <a href="/">Log In</a>
+					<p class="text-center">Have an account? <a href="/">Log In</a>
 					</p>
 				</form>
 			</article>
