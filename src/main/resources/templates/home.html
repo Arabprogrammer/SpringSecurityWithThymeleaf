@@ -12,6 +12,10 @@
  	<div sec:authorize="isAuthenticated()">
     	 Authenticated as <b><span sec:authentication="name "></span></b><br>
      	 Roles: <span sec:authentication="principal.authorities"></span>
+     	 <div class="container-fluid mt-5">
+     	 	<a class="btn btn-outline-success" href="/admin" role="button">go to Admin Site</a><br>
+     	  	<a class="btn btn-outline-secondary mt-2" href="/user" role="button">go to User Site</a>
+     	 </div>
 	</div>
 </div>
 </body>

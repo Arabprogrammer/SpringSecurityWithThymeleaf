@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" 
+  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+  <div th:replace="fragments/header :: header-links"/>
+<head>
+<meta charset="ISO-8859-1">
+<title>Admin Site</title>
+</head>
+<body>
+<div th:replace="fragments/header :: nav"></div>
+<div class="container-fluid">
+ 	<div sec:authorize="isAuthenticated()">
+    	 Hello  <b><span sec:authentication="name "></span></b><br>
+    	 <h2>you are here because you are a Admin user</h2>
+	</div>
+</div>
+</body>
+</html>
