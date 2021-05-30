@@ -48,8 +48,6 @@ public class UserController {
 		return "home";
 	}
 
-//	required
-//	minlength="8"
 	/*
 	 * The BindingResult must come right after the model object that is validated or
 	 * else Spring will fail to validate the object and throw an exception.
